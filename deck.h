@@ -16,6 +16,7 @@ public:
 
 
     Deck();           // pristine, sorted deck
+    ~Deck();
 
     void shuffle();   // shuffle the deck, all 52 cards present
     Card dealCard();   // get a card, after 52 are dealt, fail
@@ -26,6 +27,7 @@ private:
 
     Card myCards[SIZE];
     int myIndex;  // current card to deal
+    int numCards;
     void Seed();
     void Swap(Card &c2, Card &c1);
 };

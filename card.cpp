@@ -5,33 +5,41 @@
 #include "card.h"
 #include <iostream>
 
+
 using namespace std;
 
-    Card:: Card()
+    Card:: Card()       //default constructor
     {
         myRank = 1;
         mySuit = spades;
 
     }
 
+    /* Parametrized Constructor which sets the rank and suit of the rank and suit passed in */
     Card:: Card(int _rank, Suit _s)
     {
         myRank = _rank;
         mySuit = _s;
     }
 
+
+    /* Copy constructor which sets the rank and suit of the c_old's card */
     Card:: Card(const Card &c_old)
     {
         myRank = c_old.myRank;
         mySuit = c_old.mySuit;
-
     }
 
+    /* An accessor function gets the rank of the card */
     int Card::getRank() const
     {
         return myRank;
 
     }
+
+    /*  This member function is used to convert the suit of your card to a string
+     * For Example, spades means "s", hearts means "h", clubs means "c", diamonds means "d"
+    */
     string Card::suitString(Card::Suit s) const
     {
         switch(s) {
@@ -46,6 +54,9 @@ using namespace std;
         }
 
     }
+    /* This member function is used to convert the rank of your card to a string
+     * For Example, 1 means "A", 11 means "J", 12 means "Q", and etc
+    */
     string Card::rankString(int r) const
     {
         switch(r){
@@ -79,6 +90,8 @@ using namespace std;
         }
     }
 
+    /* This is a member function from the card class that checks whether the card has the same suit or not */
+
     bool Card::sameSuitAs(const Card &c) const
     {
         //string currentSuit = suitString(mySuit);
@@ -92,13 +105,20 @@ using namespace std;
 
     }
 
+    /* This is a member function which takes the string rank and the string suit of your card and concatenates the both of
+     * them.
+     * For instance: "Ac" for Ace of clubs, "Ks" for King of Spades
+    */
+
     string Card::toString() const
     {
         string rank = rankString(myRank);
         string suit = suitString(mySuit);
-        return rank + suit;
+        return rank + suit;  //concatenate the two strings
 
     }
+
+    /* An operator for checking whether the ranks of the cards are the same */
 
     bool Card::operator==(const Card &rhs) const
     {
@@ -110,15 +130,18 @@ using namespace std;
         }
     }
 
+    /* An operator for checking whether the ranks of the cards are NOT the same */
     bool Card::operator != (const Card &rhs) const
     {
         if(myRank != rhs.myRank){
-            return true;
+            return true;    //this is the expected result
         }
         else{
             return false;
         }
     }
+    Card::~Card() {}    //destructor
+
 
 
 

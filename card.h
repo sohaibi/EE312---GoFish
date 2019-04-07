@@ -2,6 +2,7 @@
 // Created by khans on 4/5/2019.
 //
 
+
 #ifndef SIXTHLAB_CARD_H
 #define SIXTHLAB_CARD_H
 
@@ -17,6 +18,7 @@ public:
     enum Suit {spades, hearts, diamonds, clubs};
 
     Card();          // default, ace of spades
+    ~Card();
 
     Card(int rank, Suit s); //parmaterized constructor
     Card(const Card &c_old);  //copy constructor
@@ -36,8 +38,8 @@ public:
 
 private:
 
-    int myRank;
-    Suit mySuit;
+    int myRank;  //rank of card
+    Suit mySuit;  //suit of card
 
 
 };

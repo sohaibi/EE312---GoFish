@@ -17,10 +17,16 @@ using namespace std;
 class Player
 {
 public:
-    Player();
+    Player(){                    // Default constructor
+        myName = "Player 1";     //player is going to be named "Player 1" automatically if the user of class
+    }                            //types in Player()
 
-    Player(string name) {
+    Player(string name) {        //Parametrized constructor
         myName = name;
+    }
+
+    Player(const Player &old_player){        //Copy constructor
+        myName = old_player.getName();       //Needed for alternating players
     }
 
     string getName() const {

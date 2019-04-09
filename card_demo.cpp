@@ -14,7 +14,7 @@ Player alternatePlayer(int &currindex);   //function which will be used to alter
 int main() {
 
 
-    int numCards = 5;
+    int numCards = 7;
 
     Player p1("Joe");
     Player p2("Jane");

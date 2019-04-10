@@ -93,6 +93,10 @@ string Player::showBooks() const {
 
 }
 
+bool Player::rankInHand(Card c) const {
+    return false;
+}
+
 
 
 

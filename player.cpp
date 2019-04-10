@@ -3,19 +3,27 @@
 //
 #include "player.h"
 #include <vector>
-
+#include <math.h>
+/* PRE: Two cards with a valid suit and rank are being passed by reference to denote the fact that they are going to contain
+ * the pair of cards with the same rank that is going to form a book
+ * POST: This function will return the two cards that form a book(pair) in your hand and a true or false value on whether a book
+ * has been formed. When a book is formed, we should expect a return statement of true and the two cards c1 and c2 should contain
+ * information about the two cards that form a book.
+*/
 bool Player::checkHandForBook(Card &c1, Card &c2) {
     for(vector<Card>::iterator first = myHand.begin(); first != myHand.end(); first++){
         for(vector<Card>::iterator second = myHand.begin(); second != myHand.end(); second++){
-            if((first -> getRank() == second -> getRank()) && !(first -> sameSuitAs(*second)))
+            if((first -> getRank() == second -> getRank()) && !(first -> sameSuitAs(*second))){
                 c1 = *first;
                 c2 = *second;
                 return true;
+            }
         }
     }
  return false;
 }
 
+/* Checks whether the player has that card in his hand. Returns true if he does have the card c and false if he doesn't */
 bool Player::cardInHand(Card c) const {
     for(int k = 0; k < myHand.size(); k++){
         if(myHand[k] == c){
@@ -35,7 +43,8 @@ void Player::bookCards(Card c1, Card c2) {
 
 
 /* PRE: Making sure it is valid card with an appropriate rank and suit
- * POST: returns the last card in your hand which had the similar ranking as Card c
+ * POST: returns the last card in your hand which had the similar ranking and suit as Card c
+ * Essentially, removing the card c from your hand and returning that card to perform other functions.
 */
 Card Player::removeCardFromHand(Card c) {
 
@@ -61,11 +70,12 @@ int Player::getHandSize() const {
     return myHand.size();
 }
 
-//for the moment the player just asks for whatever card they got last
+//It chooses a card at random from your hand that the player would ask for.
 Card Player::chooseCardFromHand() const {
     int num = rand() % myHand.size();
     return myHand[num];
 }
+//Returns the string which shows the hand of the player
 string Player::showHand() const {
     string hand = "";
     for(int show = 0; show < myHand.size(); show++){
@@ -73,7 +83,7 @@ string Player::showHand() const {
     }
     return hand;
 }
-
+//Returns the string which shows the books that the player made so far
 string Player::showBooks() const {
     string book = "";
     for(int showBook = 0; showBook < myBook.size(); showBook++){

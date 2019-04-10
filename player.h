@@ -8,7 +8,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include <ctime>
 
 #include "card.h"
 using namespace std;
@@ -23,6 +23,8 @@ public:
 
     Player(string name) {        //Parametrized constructor
         myName = name;
+        unsigned int currentTime = (unsigned)time(0);
+        srand(currentTime);
     }
 
     Player(const Player &old_player){        //Copy constructor

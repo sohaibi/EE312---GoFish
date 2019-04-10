@@ -13,7 +13,7 @@
 bool Player::checkHandForBook(Card &c1, Card &c2) {
     for(vector<Card>::iterator first = myHand.begin(); first != myHand.end(); first++){
         for(vector<Card>::iterator second = myHand.begin(); second != myHand.end(); second++){
-            if((first -> getRank() == second -> getRank()) && !(first -> sameSuitAs(*second))){
+            if((first -> getRank() == second -> getRank()) && !(first == second)){
                 c1 = *first;
                 c2 = *second;
                 return true;

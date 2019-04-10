@@ -25,57 +25,90 @@ int main() {
     Deck d;  //create a deck of cards
     d.shuffle();
 
-    ofstream log;
-    log.open("logfile.txt");
 
-
-    for(int i = 0; i < 7; i++){
-        p1.addCard(d.dealCard());
-        p2.addCard(d.dealCard());
+    for(int i=0; i<14; i++){
+        turn = (turn+1)%2;
+        players.at(turn).addCard(d.dealCard());
+        cout << "turn " << players.at(turn).getName() << endl;
+        cout << players.at(turn).showHand() << endl;
     }
+
+    cout << "Player One " << players.at(0).showHand() << endl;
+    cout << "Player Two " << players.at(1).showHand() << endl;
 
     Card pairA;
     Card pairB;
     Card temp1;
     Card temp2;
 
-    while(p1.checkHandForBook(pairA, pairB)){
-        p1.bookCards(pairA, pairB);
-        temp1 = p1.removeCardFromHand(pairA);
-        temp2 = p1.removeCardFromHand(pairB);
+    while(players.at(0).checkHandForBook(pairA, pairB)){
+        players.at(0).bookCards(players.at(0).removeCardFromHand(pairA), players.at(0).removeCardFromHand(pairB));
         //still need to remove the cards from the myHand vector for both players
     }
 
+    cout << "Player One Books " << players.at(0).showBooks() << endl;
+    cout << players.at(0).getBookSize() << endl;
+
     while(p2.checkHandForBook(pairA, pairB)){
-        p2.bookCards(pairA, pairB);
-        temp1 = p2.removeCardFromHand(pairA);
-        temp2 = p2.removeCardFromHand(pairB);
+        p2.bookCards(p2.removeCardFromHand(pairA), p2.removeCardFromHand(pairB));
+   }
+
+    cout << "Player Two Books " << p2.showBooks() << endl;
+    cout << p2.getBookSize() << endl;
+
+    Card test = Card(1, Card::spades);
+    if(p1.rankInHand(test) || p2.rankInHand(test)) {
+        cout << "match" << endl;
     }
 
-    while((p1.getBookSize() / 2) + (p2.getBookSize() / 2) < 26){
-        //update whose turn it is
-        int opponent = turn;
-        turn = (turn + 1)%2;
-        duration = true;
-        //pick "seeking card"
-
+    while((players.at(0).getBookSize() + players.at(1).getBookSize() < 52)){
         Card seeking = players.at(turn).chooseCardFromHand();
-        log << players.at(turn).getName() << "asks 'do you have any" << seeking.rankString(seeking.getRank()) << endl;
-        //check for match from opponent
+        int opponent = (turn + 1)%2;
         if(players.at(opponent).rankInHand(seeking)){
-            //if there is a match, book seeking and the discovered match
+            for(int i = 0; i < 4; i++){
+                Card match = Card(seeking.getRank(),(Card::Suit)i);
+                if(players.at(opponent).cardInHand(match)){
+                    players.at(turn).bookCards(players.at(opponent).removeCardFromHand(match), seeking);
+                    players.at(turn).removeCardFromHand(seeking);
+                }
+            }
         }
-            //otherwise draw card and book if a match is discovered
         else{
             players.at(turn).addCard(d.dealCard());
-            if(p1.checkHandForBook(pairA, pairB)){
-                players.at(turn).bookCards(pairA, pairB);
-                temp1 = players.at(turn).removeCardFromHand(pairA);
-                temp2 = players.at(turn).removeCardFromHand(pairB);
+            if(p1.checkHandForBook(pairA, pairB)) {
+                players.at(turn).bookCards(players.at(turn).removeCardFromHand(pairA), players.at(turn).removeCardFromHand(pairB));
             }
-            duration = false;
+            turn = (turn+1)%2;
         }
+
     }
+
+
+
+
+//    while((p1.getBookSize() / 2) + (p2.getBookSize() / 2) < 26){
+//        //update whose turn it is
+//        int opponent = turn;
+//        turn = (turn + 1)%2;
+//        duration = true;
+//        //pick "seeking card"
+//
+//        Card seeking = players.at(turn).chooseCardFromHand();
+//        //check for match from opponent
+//        if(players.at(opponent).rankInHand(seeking)){
+//            //if there is a match, book seeking and the discovered match
+//        }
+//            //otherwise draw card and book if a match is discovered
+//        else{
+//            players.at(turn).addCard(d.dealCard());
+//            if(p1.checkHandForBook(pairA, pairB)){
+//                players.at(turn).bookCards(pairA, pairB);
+//                temp1 = players.at(turn).removeCardFromHand(pairA);
+//                temp2 = players.at(turn).removeCardFromHand(pairB);
+//            }
+//            duration = false;
+//        }
+//    }
 
     return EXIT_SUCCESS;
 

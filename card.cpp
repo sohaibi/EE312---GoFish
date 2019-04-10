@@ -51,6 +51,8 @@ using namespace std;
                 return "c";
             case Card:: diamonds:
                 return "d";
+            default:
+                return "x";
         }
 
     }
@@ -86,6 +88,8 @@ using namespace std;
                 return "Q";
             case 13:
                 return "K";
+            default:
+                return "X";
 
         }
     }

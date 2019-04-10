@@ -16,69 +16,46 @@ int main() {
 
     Player p1("Alice");
     Player p2("Bob");
-    vector <Player> players;
+    vector<Player> players;
     players.push_back(p1);
     players.push_back(p2);
     int turn = 0;
-    bool duration;
 
     Deck d;  //create a deck of cards
     d.shuffle();
 
 
-    for(int i=0; i<14; i++){
-        turn = (turn+1)%2;
+    for (int i = 0; i < 14; i++) {
+        turn = (turn + 1) % 2;
         players.at(turn).addCard(d.dealCard());
-        cout << "turn " << players.at(turn).getName() << endl;
-        cout << players.at(turn).showHand() << endl;
     }
-
-    cout << "Player One " << players.at(0).showHand() << endl;
-    cout << "Player Two " << players.at(1).showHand() << endl;
-
+    //check both players hands for existing pairs and remove to book
     Card pairA;
     Card pairB;
-    Card temp1;
-    Card temp2;
-
-    while(players.at(0).checkHandForBook(pairA, pairB)){
+    while (players.at(0).checkHandForBook(pairA, pairB)) {
         players.at(0).bookCards(players.at(0).removeCardFromHand(pairA), players.at(0).removeCardFromHand(pairB));
-        //still need to remove the cards from the myHand vector for both players
     }
-
-    cout << "Player One Books " << players.at(0).showBooks() << endl;
-    cout << players.at(0).getBookSize() << endl;
-
-    while(p2.checkHandForBook(pairA, pairB)){
-        p2.bookCards(p2.removeCardFromHand(pairA), p2.removeCardFromHand(pairB));
-   }
-
-    cout << "Player Two Books " << p2.showBooks() << endl;
-    cout << p2.getBookSize() << endl;
-
-    Card test = Card(1, Card::spades);
-    if(p1.rankInHand(test) || p2.rankInHand(test)) {
-        cout << "match" << endl;
+    while (players.at(1).checkHandForBook(pairA, pairB)) {
+        players.at(1).bookCards(players.at(1).removeCardFromHand(pairA), players.at(1).removeCardFromHand(pairB));
     }
-
-    while((players.at(0).getBookSize() + players.at(1).getBookSize() < 52)){
+    while ((players.at(0).getBookSize() + players.at(1).getBookSize() < 52)) {
         Card seeking = players.at(turn).chooseCardFromHand();
-        int opponent = (turn + 1)%2;
-        if(players.at(opponent).rankInHand(seeking)){
-            for(int i = 0; i < 4; i++){
-                Card match = Card(seeking.getRank(),(Card::Suit)i);
-                if(players.at(opponent).cardInHand(match)){
+        int opponent = (turn + 1) % 2;
+        if (players.at(opponent).rankInHand(seeking)) {
+            for (int i = 0; i < 4; i++) {
+                Card match = Card(seeking.getRank(), (Card::Suit) i);
+                if (players.at(opponent).cardInHand(match)) {
                     players.at(turn).bookCards(players.at(opponent).removeCardFromHand(match), seeking);
                     players.at(turn).removeCardFromHand(seeking);
                 }
             }
-        }
-        else{
+        } else {
             players.at(turn).addCard(d.dealCard());
-            if(p1.checkHandForBook(pairA, pairB)) {
-                players.at(turn).bookCards(players.at(turn).removeCardFromHand(pairA), players.at(turn).removeCardFromHand(pairB));
+            if (p1.checkHandForBook(pairA, pairB)) {
+                players.at(turn).bookCards(players.at(turn).removeCardFromHand(pairA),
+                                           players.at(turn).removeCardFromHand(pairB));
             }
-            turn = (turn+1)%2;
+            turn = (turn + 1) % 2;
         }
 
     }

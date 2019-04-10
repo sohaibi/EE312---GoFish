@@ -94,6 +94,11 @@ string Player::showBooks() const {
 }
 
 bool Player::rankInHand(Card c) const {
+    for(int find = 0; find < myHand.size(); find++){
+        if(myHand[find].getRank() == c.getRank()){
+            return true;
+        }
+    }
     return false;
 }
 

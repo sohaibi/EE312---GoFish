@@ -15,6 +15,7 @@ int main() {
     players.push_back(p1);
     players.push_back(p2);
     int turn = 0;
+    bool duration;
 
     Deck d;  //create a deck of cards
     d.shuffle();
@@ -29,19 +30,26 @@ int main() {
     }
     Card pairA;
     Card pairB;
+    Card temp1;
+    Card temp2;
 
     while(p1.checkHandForBook(pairA, pairB)){
         p1.bookCards(pairA, pairB);
+        temp1 = p1.removeCardFromHand(pairA);
+        temp2 = p1.removeCardFromHand(pairB);
     }
 
     while(p2.checkHandForBook(pairA, pairB)){
         p2.bookCards(pairA, pairB);
+        temp1 = p2.removeCardFromHand(pairA);
+        temp2 = p2.removeCardFromHand(pairB);
     }
 
     while(p1.getBookSize() + p2.getBookSize() < 26){
         //update whose turn it is
-        int opponent = turn;
-        turn = (turn + 1)%2;
+        int opponent = turn;   //initially, the first player is the opponent
+        turn = (turn + 1)%2;   //and the second player has his turn first
+        duration = true;
         //pick "seeking card"
         Card seeking = players.at(turn).chooseCardFromHand();
         log << players.at(turn).getName() << "asks 'do you have any" << seeking.rankString(seeking.getRank()) << endl;
@@ -54,14 +62,13 @@ int main() {
             players.at(turn).addCard(d.dealCard());
             if(p1.checkHandForBook(pairA, pairB)){
                 players.at(turn).bookCards(pairA, pairB);
+                temp1 = players.at(turn).removeCardFromHand(pairA);
+                temp2 = players.at(turn).removeCardFromHand(pairB);
             }
+            duration = false;
         }
     }
 
     return EXIT_SUCCESS;
-
-
-    //std::cout << "Hello, World!" << std::endl;
-    //return 0;
 }
 

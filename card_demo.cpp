@@ -6,6 +6,7 @@
 #include <vector>
 #include <fstream>
 
+
 using namespace std;
 // PROTOTYPES for functions used by this demonstration program:
 //void dealHand(Deck &d, Player &p);
@@ -41,25 +42,39 @@ int main() {
     while ((players.at(0).getBookSize() + players.at(1).getBookSize() < 52)) {
         Card seeking = players.at(turn).chooseCardFromHand();
         int opponent = (turn + 1) % 2;
+        cout << players.at(turn).getName() << ": 'Do you have any " << seeking.rankString(seeking.getRank()) << "'s?"
+                << endl;
         if (players.at(opponent).rankInHand(seeking)) {
+            cout << players.at(opponent).getName() << ": 'Yes, I have a " << seeking.rankString(seeking.getRank()) << ".'" << endl;
+            Card found = Card();
             for (int i = 0; i < 4; i++) {
                 Card match = Card(seeking.getRank(), (Card::Suit) i);
-                if (players.at(opponent).cardInHand(match)) {
+                if (players.at(opponent).cardInHand(match) && !(match.sameSuitAs(seeking))) {
                     players.at(turn).bookCards(players.at(opponent).removeCardFromHand(match), seeking);
                     players.at(turn).removeCardFromHand(seeking);
+                    found = match;
                 }
             }
-        } else {
-            players.at(turn).addCard(d.dealCard());
+            cout << players.at(turn).getName() << " books the " << found.toString() << ". \n" << endl ;
+        }
+        else {
+            cout << players.at(opponent).getName() << ": 'No, go fish'" << endl;
+            Card drawn = d.dealCard();
+            players.at(turn).addCard(drawn);
+            cout << players.at(turn).getName() << " draws a " << drawn.toString() << ". \n" << endl;
             if (p1.checkHandForBook(pairA, pairB)) {
                 players.at(turn).bookCards(players.at(turn).removeCardFromHand(pairA),
                                            players.at(turn).removeCardFromHand(pairB));
+                cout << players.at(turn).getName() << " books the " << pairA.toString() << " and " << pairB.toString()  << endl;
             }
             turn = (turn + 1) % 2;
         }
 
+
     }
 
+
+}
 
 
 
@@ -87,7 +102,6 @@ int main() {
 //        }
 //    }
 
-    return EXIT_SUCCESS;
 
     /*
 
@@ -135,7 +149,7 @@ int main() {
  */
     //std::cout << "Hello, World!" << std::endl;
     //return 0;
-}
+
 
 /* PRE: Passing the deck and the player to be able to have cards in each player's hand
  * POST: There are supposed to be 5 cards in each player's hand. In this case, the size of the myHand vector

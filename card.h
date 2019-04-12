@@ -21,6 +21,7 @@ public:
     ~Card();
 
     Card(int rank, Suit s); //parmaterized constructor
+    Card(string s);
     Card(const Card &c_old);  //copy constructor
 
     string toString()              const;  // return string version e.g. Ac 4h Js
@@ -40,6 +41,7 @@ private:
 
     int myRank;  //rank of card
     Suit mySuit;  //suit of card
+    string Joke;
 
 
 };

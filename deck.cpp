@@ -58,7 +58,7 @@ void Deck::Seed() {
 //POST: returns the topmost card in your deck and increments the number of cards used.
 Card Deck::dealCard() {
     if(myIndex == SIZE){
-        return Card();
+        return Card("Joker");
     }
     else{
         Card top = myCards[myIndex];

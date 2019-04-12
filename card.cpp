@@ -22,6 +22,10 @@ using namespace std;
         mySuit = _s;
     }
 
+    Card:: Card(string _s)
+    {
+        Joke = _s;
+    }
 
     /* Copy constructor which sets the rank and suit of the c_old's card */
     Card:: Card(const Card &c_old)
@@ -126,7 +130,7 @@ using namespace std;
 
     bool Card::operator==(const Card &rhs) const
     {
-        if(myRank == rhs.myRank){
+        if(myRank == rhs.myRank && mySuit == rhs.mySuit){
             return true;
         }
         else{
@@ -137,7 +141,7 @@ using namespace std;
     /* An operator for checking whether the ranks of the cards are NOT the same */
     bool Card::operator != (const Card &rhs) const
     {
-        if(myRank != rhs.myRank){
+        if(myRank != rhs.myRank && mySuit != rhs.mySuit){
             return true;    //this is the expected result
         }
         else{

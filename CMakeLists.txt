@@ -3,4 +3,4 @@ project(SixthLab)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(SixthLab card.h go_fish.cpp player.h deck.h card.cpp player.cpp deck.cpp)
+add_executable(SixthLab card.h go_fish player.h deck.h card.cpp player.cpp deck.cpp)

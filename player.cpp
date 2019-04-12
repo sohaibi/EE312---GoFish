@@ -4,6 +4,7 @@
 #include "player.h"
 #include <vector>
 #include <math.h>
+#include <iterator>
 /* PRE: Two cards with a valid suit and rank are being passed by reference to denote the fact that they are going to contain
  * the pair of cards with the same rank that is going to form a book
  * POST: This function will return the two cards that form a book(pair) in your hand and a true or false value on whether a book
@@ -49,15 +50,14 @@ void Player::bookCards(Card c1, Card c2) {
 Card Player::removeCardFromHand(Card c) {
 
     Card seeking;
+
     for(vector<Card>::iterator it = myHand.begin(); it!= myHand.end(); it++) {
-        if (it->getRank() == c.getRank() && it->sameSuitAs(c))  {
+        if (it->getRank() == c.getRank() && it->sameSuitAs(c)){
             seeking = *it;  //assignment operator for card needed
             myHand.erase(it);
+            return seeking;
         }
     }
-    return seeking;
-
-
 }
 
 //RETURNS THE SIZE OF THE VECTOR myBook
@@ -72,6 +72,7 @@ int Player::getHandSize() const {
 
 //It chooses a card at random from your hand that the player would ask for.
 Card Player::chooseCardFromHand() const {
+
     int num = rand() % myHand.size();
     return myHand[num];
 }

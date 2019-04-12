@@ -93,7 +93,7 @@ using namespace std;
             case 13:
                 return "K";
             default:
-                return "X";
+                return "X";  //Any other rank above 13 will be the default
 
         }
     }
@@ -120,8 +120,8 @@ using namespace std;
 
     string Card::toString() const
     {
-        string rank = rankString(myRank);
-        string suit = suitString(mySuit);
+        string rank = rankString(myRank);  //gets the rank as as a string
+        string suit = suitString(mySuit);  //gets the suit as a string
         return rank + suit;  //concatenate the two strings
 
     }

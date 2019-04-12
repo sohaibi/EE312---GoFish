@@ -1,0 +1,167 @@
+Welcome to our first edition of the Go-Fish game with our contestants: Sohaib and Jim
+
+Sohaib's hand: 2s As 6s 8s 6d Qs Ah 
+Jim's hand: 4s 7s 5s 3s 7c Js Ks 
+
+Sohaib's books: As Ah 6s 6d 
+Jim's books: 7s 7c 
+
+Plays from each player:
+
+Sohaib asks - Do you have any 8
+Jim says - Go Fish
+Sohaib draws 2h
+Jim asks - Do you have any K
+Sohaib says - Go Fish
+Jim draws 3h
+Sohaib asks - Do you have any Q
+Jim says - Go Fish
+Sohaib draws 4h
+Jim asks - Do you have any 4
+Sohaib says - Yes. I have a 4
+Jim books the 4
+Jim asks - Do you have any K
+Sohaib says - Go Fish
+Jim draws 5h
+Sohaib asks - Do you have any Q
+Jim says - Go Fish
+Sohaib draws 6h
+Jim asks - Do you have any J
+Sohaib says - Go Fish
+Jim draws 7h
+Sohaib asks - Do you have any 8
+Jim says - Go Fish
+Sohaib draws 8h
+Jim asks - Do you have any 7
+Sohaib says - Go Fish
+Jim draws 9h
+Sohaib asks - Do you have any 6
+Jim says - Go Fish
+Sohaib draws 10h
+Jim asks - Do you have any J
+Sohaib says - Go Fish
+Jim draws Jh
+Sohaib asks - Do you have any 10
+Jim says - Go Fish
+Sohaib draws Qh
+Jim asks - Do you have any K
+Sohaib says - Go Fish
+Jim draws Kh
+Sohaib asks - Do you have any 6
+Jim says - Go Fish
+Sohaib draws Ad
+Jim asks - Do you have any 9
+Sohaib says - Go Fish
+Jim draws 2d
+Sohaib asks - Do you have any 10
+Jim says - Go Fish
+Sohaib draws 3d
+Jim asks - Do you have any 9
+Sohaib says - Go Fish
+Jim draws 4d
+Sohaib asks - Do you have any 6
+Jim says - Go Fish
+Sohaib draws 9c
+Jim asks - Do you have any 7
+Sohaib says - Go Fish
+Jim draws 7d
+Sohaib asks - Do you have any 10
+Jim says - Go Fish
+Sohaib draws 10s
+Jim asks - Do you have any 9
+Sohaib says - Yes. I have a 9
+Jim books the 9
+Jim asks - Do you have any 4
+Sohaib says - Go Fish
+Jim draws 8d
+Sohaib asks - Do you have any 3
+Jim says - Go Fish
+Sohaib draws 9d
+Jim asks - Do you have any 2
+Sohaib says - Go Fish
+Jim draws 10d
+Sohaib asks - Do you have any 9
+Jim says - Go Fish
+Sohaib draws Jd
+Jim asks - Do you have any 8
+Sohaib says - Go Fish
+Jim draws Qd
+Sohaib asks - Do you have any J
+Jim says - Go Fish
+Sohaib draws Kd
+Jim asks - Do you have any 8
+Sohaib says - Go Fish
+Jim draws 5d
+Sohaib asks - Do you have any J
+Jim says - Go Fish
+Sohaib draws 2c
+Jim asks - Do you have any 10
+Sohaib says - Go Fish
+Jim draws 3c
+Sohaib asks - Do you have any 6
+Jim says - Go Fish
+Sohaib draws 4c
+Jim asks - Do you have any 10
+Sohaib says - Go Fish
+Jim draws 5c
+Sohaib asks - Do you have any A
+Jim says - Go Fish
+Sohaib draws 6c
+Jim asks - Do you have any 10
+Sohaib says - Go Fish
+Jim draws 9s
+Sohaib asks - Do you have any 9
+Jim says - Yes. I have a 9
+Sohaib books the 9
+Sohaib asks - Do you have any A
+Jim says - Go Fish
+Sohaib draws 8c
+Jim asks - Do you have any 8
+Sohaib says - Yes. I have a 8
+Jim books the 8
+Jim asks - Do you have any 10
+Sohaib says - Go Fish
+Jim draws Ac
+Sohaib asks - Do you have any 3
+Jim says - Yes. I have a 3
+Sohaib books the 3
+Sohaib asks - Do you have any 4
+Jim says - Yes. I have a 4
+Sohaib books the 4
+Sohaib asks - Do you have any K
+Jim says - Go Fish
+Sohaib draws 10c
+Jim asks - Do you have any Q
+Sohaib says - Go Fish
+Jim draws Jc
+Sohaib asks - Do you have any K
+Jim says - Go Fish
+Sohaib draws Qc
+Jim asks - Do you have any 10
+Sohaib says - Yes. I have a 10
+Jim books the 10
+Jim asks - Do you have any 2
+Sohaib says - Yes. I have a 2
+Jim books the 2
+Jim asks - Do you have any A
+Sohaib says - Yes. I have a A
+Jim books the A
+Jim asks - Do you have any Q
+Sohaib says - Yes. I have a Q
+Jim books the Q
+Jim asks - Do you have any J
+Sohaib says - Yes. I have a J
+Jim books the J
+Jim has no cards in their hand They must draw another card
+Jim draws Kc
+Sohaib asks - Do you have any K
+Jim says - Yes. I have a K
+Sohaib books the K
+
+Final Results
+Sohaib has Books: As Ah 6s 6d 2s 2h 8s 8h Qs Qh 10h 10s 6h 6c 9s 9d 3c 3d 4d 4c Kc Kd 
+Jim has Books: 7s 7c 3s 3h 4h 4s 5s 5h Js Jh Ks Kh 7h 7d 9c 9h 5d 5c 8c 8d 10c 10d 2c 2d Ad Ac Qc Qd Jd Jc 
+Jim has 15 books
+Jim is the winner!!!
+
+Thank you for Playing Go-Fish. We hope that you all come back for the next edition of the game. Until then, Happy fishing!!

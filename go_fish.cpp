@@ -6,13 +6,20 @@
 #include "player.h"
 #include "deck.h"
 
+
+//This file is the driver of the program used to test the game
+// created by Sohaib Khan and Mary Graham
+//Class Section: 16030
 using namespace std;
+void winningCondition(const Player &p1, const Player &p2); //Used to determine the winner between player 1 and player 2
+
 
 int main() {
 
-
-    Player p1("Alice");
-    Player p2("Bob");
+    int numCards = 14;  //number of cards passed to each player. Since we are distributing 7 cards per player, we would need
+                        //to take 14 cards out of our deck
+    Player p1("Sohaib");
+    Player p2("Jim");
     //Creating the vector of players
     vector <Player> players;
     players.push_back(p1);
@@ -25,25 +32,29 @@ int main() {
     bool found;
 
     ofstream log;
-    log.open("logfile.txt");
+    log.open("gofish_results.txt");
 
 
-    log << "WELCOME TO THE FIRST EDITION OF THE GO FISH CARD GAME WITH OUR CONTESTANTS " << players.at(0).getName() << " and " << players.at(1).getName() << endl;
-
+    log << "Welcome to our first edition of the Go-Fish game with our contestants: " << players.at(0).getName() << " and " << players.at(1).getName() << endl;
+    log << endl;
 
     Deck d;  //create a deck of cards
     d.shuffle();  //shuffling a deck of cards
 
 
-    for(int i = 0; i < 14; i++){
+    for(int i = 0; i < numCards; i++){
         turn = (turn+1) % 2;   //alternating turns between each player
         players.at(turn).addCard(d.dealCard()); //adding 7 cards to each player's hand
     }
 
-    cout << "Player One " << players.at(0).showHand() << endl;
-    cout << "Player Two " << players.at(1).showHand() << endl;
+    cout <<  players.at(0).getName() << "'s" << " hand: " << players.at(0).showHand() << endl;
+    log <<   players.at(0).getName() << "'s" << " hand: " << players.at(0).showHand() << endl;
+    cout <<  players.at(1).getName() << "'s" << " hand: " << players.at(1).showHand() << endl;
+    log <<   players.at(1).getName() << "'s" << " hand: " << players.at(1).showHand() << endl;
+    cout << endl;
+    log << endl;
 
-    Card pairA;  //these are just temporary card objects
+    Card pairA;  //these are just temporary card objects used for assigning cards
     Card pairB;
     Card temp1;
     Card temp2;
@@ -54,25 +65,30 @@ int main() {
         players.at(0).bookCards(players.at(0).removeCardFromHand(pairA), players.at(0).removeCardFromHand(pairB));
     }
 
-    cout << "Player One Books " << players.at(0).showBooks() << endl;
-    cout << players.at(0).getBookSize() << endl;
+    cout << players.at(0).getName() << "'s books: " << players.at(0).showBooks() << endl;
+    log <<  players.at(0).getName() << "'s books: " << players.at(0).showBooks() << endl;
+    //cout << players.at(0).getBookSize() << endl;
 
     while(players.at(1).checkHandForBook(pairA, pairB)){
         players.at(1).bookCards(players.at(1).removeCardFromHand(pairA), players.at(1).removeCardFromHand(pairB));
     }
 
-    cout << "Player Two Books " << players.at(1).showBooks() << endl;
-    cout << players.at(1).getBookSize() << endl;
-
+    cout << players.at(1).getName() << "'s books: " << players.at(1).showBooks() << endl;
+    log <<  players.at(1).getName() << "'s books: " << players.at(1).showBooks() << endl;
+    //cout << players.at(1).getBookSize() << endl;
+    cout << endl;
+    log << endl;
     /* Actual Execution or driver for the Game */
 
+    log << "Plays from each player:" << endl;
+    log << endl;
     //This while loop will keep being executed until each player's book size adds up to greater than or equal
     //to 52 cards
     while((players.at(0).getBookSize() + players.at(1).getBookSize() < 52)){
 
         /* The two players show their books everytime */
-        cout << players.at(0).getName() << " has " << "Books " << players.at(0).showBooks() << endl;
-        cout << players.at(1).getName() << " has " << "Books " << players.at(1).showBooks() << endl;
+        cout << players.at(0).getName() << " has " << "Books - " << players.at(0).showBooks() << endl;
+        cout << players.at(1).getName() << " has " << "Books - " << players.at(1).showBooks() << endl;
         cout << endl;
 
         /* This is the case where it is important to check whether either of the players has no cards in their hand */
@@ -87,7 +103,7 @@ int main() {
             log << players.at(turn). getName() << " draws" << " " << must_draw.toString() << endl;
             players.at(turn).addCard(must_draw);
             turn = (turn+1)%2;  //Since the player has drawn a card from their deck, it alternates the turn to the other player.
-            continue;          //this will just continue the execution of the while loop. In other words, the game will still go on
+            continue;          //this will just continue the execution of the outer while loop. In other words, the game will still go on
         }
 
 
@@ -137,82 +153,60 @@ int main() {
                 players.at(turn).bookCards(players.at(turn).removeCardFromHand(pairA), players.at(turn).removeCardFromHand(pairB));
             }
 
-            turn = (turn+1)%2;  //Alternating the turns between the players
+            turn = (turn+1) % 2;  //Alternating the turns between the players
         }
     }
 
     /* After the game ends, the player will show their books and their hands and the player who has formed the
      * most books will win the game
     */
+    log << endl;
+    log << "Final Results";
+    cout << endl;
+    log << endl;
+    cout << players.at(0).getName() << " has " << "Books: " << players.at(0).showBooks() << endl;
+    cout << players.at(1).getName() << " has " << "Books: " << players.at(1).showBooks() << endl;
+    log  << players.at(0).getName() << " has " << "Books: " << players.at(0).showBooks() << endl;
+    log  << players.at(1).getName() << " has " << "Books: " << players.at(1).showBooks() << endl;
 
-    cout << players.at(0).getName() << " has " << players.at(0).showHand() << endl;
-    cout << players.at(1).getName() << " has " << players.at(1).showHand() << endl;
-    cout << players.at(0).getName() << " has " << "Books " << players.at(0).showBooks() << endl;
-    cout << players.at(1).getName() << " has " << "Books " << players.at(1).showBooks() << endl;
+    /* Determining the winning condition */
+    /* Please note that these if statements are just to print the winner and their books in the gofish_results.txt file */
+    /* If there is a tie between the two players, then both of their books will be displayed */
 
+    if(players.at(0).getBookSize() > players.at(1).getBookSize()){
+        log << players.at(0).getName() << " has " << (players.at(0).getBookSize() / 2 ) << " books" << endl;
+        log << players.at(0).getName() << " is the winner!!!" << endl;
+    }
+    else if(players.at(0).getBookSize() < players.at(1).getBookSize()){
+        log << players.at(1).getName() << " has " << (players.at(1).getBookSize() / 2 ) << " books" << endl;
+        log <<  players.at(1).getName() << " is the winner!!!" << endl;
+    }
+    else if(players.at(0).getBookSize() == players.at(1).getBookSize()){
+        log << players.at(0).getName() << " has " << (players.at(0).getBookSize() / 2 ) << " books" <<  endl;
+        log << players.at(1).getName() << " has " << (players.at(1).getBookSize() / 2 ) << " books" << endl;
+        log << "IT IS A TIE!!!" << " What a match between our contestants " << players.at(0).getName() << " and " << players.at(1).getName() << endl;
+    }
 
-
-
-//    Player p1("Alice");
-//    Player p2("Bob");
-//    vector <Player> players;
-//    players.push_back(p1);
-//    players.push_back(p2);
-//    int turn = 0;
-//    bool duration;
-//
-//    Deck d;  //create a deck of cards
-//    d.shuffle();
-//
-//    ofstream log;
-//    log.open("logfile.txt");
-//
-//
-//    for(int i = 0; i < 7; i++){
-//        p1.addCard(d.dealCard());
-//        p2.addCard(d.dealCard());
-//    }
-//    Card pairA;
-//    Card pairB;
-//    Card temp1;
-//    Card temp2;
-//
-//    while(p1.checkHandForBook(pairA, pairB)){
-//        p1.bookCards(pairA, pairB);
-//        temp1 = p1.removeCardFromHand(pairA);
-//        temp2 = p1.removeCardFromHand(pairB);
-//    }
-//
-//    while(p2.checkHandForBook(pairA, pairB)){
-//        p2.bookCards(pairA, pairB);
-//        temp1 = p2.removeCardFromHand(pairA);
-//        temp2 = p2.removeCardFromHand(pairB);
-//    }
-//
-//    while(p1.getBookSize() + p2.getBookSize() < 26){
-//        //update whose turn it is
-//        int opponent = turn;   //initially, the first player is the opponent
-//        turn = (turn + 1)%2;   //and the second player has his turn first
-//        duration = true;
-//        //pick "seeking card"
-//        Card seeking = players.at(turn).chooseCardFromHand();
-////        log << players.at(turn).getName() << "asks 'do you have any" << seeking.rankString(seeking.getRank()) << endl;
-//        //check for match from opponent
-//        if(players.at(opponent).rankInHand(seeking)){
-//           //if there is a match, book seeking and the discovered match
-//        }
-//        //otherwise draw card and book if a match is discovered
-//        else{
-//            players.at(turn).addCard(d.dealCard());
-//            if(p1.checkHandForBook(pairA, pairB)){
-//                players.at(turn).bookCards(pairA, pairB);
-//                temp1 = players.at(turn).removeCardFromHand(pairA);
-//                temp2 = players.at(turn).removeCardFromHand(pairB);
-//            }
-//            duration = false;
-//        }
-//    }
-//
+    winningCondition(players.at(0), players.at(1));
+    log << endl;
+    log << "Thank you for Playing Go-Fish. We hope that you all come back for the next edition of the game. Until then, Happy fishing!!" << endl;
     return EXIT_SUCCESS;
 }
-//
+/* Determining the winning condition */
+void winningCondition(const Player &p1, const Player &p2){
+    //This function displays the winner and their books on the console. If it is a tie, then the books for both players
+    //are displayed
+    if(p1.getBookSize() > p2.getBookSize()){
+        cout << p1.getName() << " has " << (p1.getBookSize() / 2 ) << " books" << endl;
+        cout << p1.getName() << " is the winner!!!" << endl;
+    }
+    else if(p1.getBookSize() < p2.getBookSize()){
+        cout << p2.getName() << " has " << (p2.getBookSize() / 2 ) << " books" << endl;
+        cout << p2.getName() << " is the winner!!!" << endl;
+    }
+    else if(p1.getBookSize() == p2.getBookSize()){
+        cout << p1.getName() << " has " << (p1.getBookSize() / 2 ) << " books" <<  endl;
+        cout << p2.getName() << " has " << (p2.getBookSize() / 2 ) << " books" << endl;
+        cout << "IT IS A TIE!!!" << " What a match between our contestants " << p1.getName() << " and " << p2.getName() << endl;
+    }
+}

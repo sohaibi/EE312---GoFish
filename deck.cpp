@@ -8,19 +8,20 @@
 
 using namespace std;
 
+//Member functions for the deck created by Sohaib Khan and Mary Graham
+
 /* The default constructor creates an array of cards which serves to be your deck */
 Deck::Deck() {
     myIndex = 0;   //index needed to be kept track of
-
-    for(int s = 0; s < 4; s++){
-        for(int r = 1; r < 14; r++){
+    /* This is a double for loop where we create the deck by first creating 13 cards determined by the rank (r) for each of the four suits (s)
+     * myIndex keeps track of how many cards are created
+    */
+    for(int s = 0; s < 4; s++){    //For each suit s, there will be 13 cards created
+        for(int r = 1; r < 14; r++){  //The variable r determines the rank of the card
             myCards[myIndex] = Card(r, (Card:: Suit) s);  //creates an array
             myIndex++;  //index increments
         }
     }
-
-
-
 
     Seed();  //initiates the random number generator
     myIndex = 0;  //keeps the current index at zero also used later for determining how many number of cards are remaining in the deck
@@ -31,8 +32,8 @@ Deck::Deck() {
 */
 void Deck:: shuffle(){
     const int shuffletimes = 7;
-    for(int j = 0; j < shuffletimes; j++) {      //for loop needed to randomize the cards in the deck
-        int num1 = rand() % SIZE;
+    for(int j = 0; j < shuffletimes; j++) {    //for loop needed to randomize the cards in the deck
+        int num1 = rand() % SIZE;   //Want to randomize the indices of the two cards
         int num2 = rand() % SIZE;
         Swap(myCards[num2], myCards[num1]);
     }
@@ -58,10 +59,10 @@ void Deck::Seed() {
 //POST: returns the topmost card in your deck and increments the number of cards used.
 Card Deck::dealCard() {
     if(myIndex == SIZE){
-        return Card("Joker");
+        return Card("Joker");    //If you run out cards in your deck, then return a Joker
     }
     else{
-        Card top = myCards[myIndex];
+        Card top = myCards[myIndex];   //Returns the top of the card and increases the index myIndex
         myIndex++;
         return top;
     }
@@ -71,6 +72,6 @@ Card Deck::dealCard() {
 int Deck::size() const {
     return SIZE - myIndex;
 }
-Deck:: ~Deck(){}   //deck destructor
+Deck:: ~Deck(){};   //deck destructor
 
 

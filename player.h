@@ -13,7 +13,7 @@
 #include "card.h"
 using namespace std;
 
-
+//This is the player class created by Sohaib Khan and Mary Graham
 class Player
 {
 public:

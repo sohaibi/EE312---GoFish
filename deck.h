@@ -7,10 +7,10 @@
 
 #include "card.h"
 
-
+//Deck Class created by Sohaib Khan and Mary Graham
 class Deck
 {
-    static const int SIZE = 52;
+    static const int SIZE = 52;  //Constant to determine the number of cards
 
 public:
 
@@ -25,10 +25,10 @@ public:
 
 private:
 
-    Card myCards[SIZE];
-    int myIndex;  // current card to deal
+    Card myCards[SIZE];  //Creates the deck
+    int myIndex;         // current card to deal
     int numCards;
-    void Seed();
+    void Seed();  //Initiates the random number generator
     void Swap(Card &c2, Card &c1);
 };
 

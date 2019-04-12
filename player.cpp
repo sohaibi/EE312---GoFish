@@ -5,6 +5,11 @@
 #include <vector>
 #include <math.h>
 #include <iterator>
+
+/* This is the player.cpp consisting of the member functions declared in the player.h file
+ * Created by Sohaib Khan and Mary Graham
+*/
+
 /* PRE: Two cards with a valid suit and rank are being passed by reference to denote the fact that they are going to contain
  * the pair of cards with the same rank that is going to form a book
  * POST: This function will return the two cards that form a book(pair) in your hand and a true or false value on whether a book
@@ -93,7 +98,10 @@ string Player::showBooks() const {
     return book;
 
 }
-
+/* PRE: Have a card with a valid rank and suit passed as a parameter to the function. This is the card to determine
+ * whether the ranking of card c is the same as any one of the cards in the player's hand.
+ * POST: Returns a true or false value determining whether the card has been found in the player's hand
+*/
 bool Player::rankInHand(Card c) const {
     for(int find = 0; find < myHand.size(); find++){
         if(myHand[find].getRank() == c.getRank()){

@@ -10,6 +10,9 @@
 #include <string>
 using namespace std;
 
+//The card class needed for creating the deck
+//Created by Sohaib Khan and Mary Graham
+
 class Card
 {
 public:
@@ -32,8 +35,8 @@ public:
     string rankString(int r)       const;  // return "A", "2", ..."Q"
 
 
-    bool operator == (const Card& rhs) const;
-    bool operator != (const Card& rhs) const;
+    bool operator == (const Card& rhs) const;  //Determining whether the rank and suit of two cards are the same
+    bool operator != (const Card& rhs) const;  //Determining whether the rank and suit of two cards are different
 
 
 

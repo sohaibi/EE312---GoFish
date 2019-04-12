@@ -90,7 +90,11 @@ int main() {
         cout << players.at(0).getName() << " has " << "Books - " << players.at(0).showBooks() << endl;
         cout << players.at(1).getName() << " has " << "Books - " << players.at(1).showBooks() << endl;
         cout << endl;
+        log << players.at(0).getName() << " has " << "Books - " << players.at(0).showBooks() << endl;
+        log << players.at(1).getName() << " has " << "Books - " << players.at(1).showBooks() << endl;
+        log << endl;
 
+        log << "It is " << players.at(turn).getName() << "'s turn" << endl;
         /* This is the case where it is important to check whether either of the players has no cards in their hand */
         /* If there are no cards in their hand remaining, then we must display the message that the player must draw another card
          * from their hand.
@@ -112,7 +116,7 @@ int main() {
         found = false;   //Setting the boolean variable found to be false because we have not found the card from the opponent's hand that has
         //the same ranking as the seeking card
 
-        log << players.at(turn).getName() << " asks - Do you have any" << " " << seeking.rankString(seeking.getRank()) << endl;
+        log << players.at(turn).getName() << " asks - Do you have any" << " " << seeking.rankString(seeking.getRank()) << "'s" << endl;
         //player asks the opponent for the card that has similar ranking to the seeking card
 
         if(players.at(opponent).rankInHand(seeking)){
@@ -151,6 +155,7 @@ int main() {
             players.at(turn).addCard(deal); //adds it to the hand
             if(players.at(turn).checkHandForBook(pairA, pairB)) {
                 players.at(turn).bookCards(players.at(turn).removeCardFromHand(pairA), players.at(turn).removeCardFromHand(pairB));
+                log << players.at(turn).getName() << " books the" << " " << deal.rankString(deal.getRank()) << endl;
             }
 
             turn = (turn+1) % 2;  //Alternating the turns between the players

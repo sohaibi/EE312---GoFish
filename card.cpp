@@ -48,13 +48,13 @@ using namespace std;
     {
         switch(s) {
             case Card::spades:
-                return "s";
+                return "♠";
             case Card::hearts:
-                return "h";
+                return "♥";
             case Card::clubs:
-                return "c";
+                return "♣";
             case Card:: diamonds:
-                return "d";
+                return "♦";
             default:
                 return "x";
         }

@@ -5,7 +5,7 @@
 #include "card.h"
 #include <iostream>
 
-
+/* Created by Sohaib Khan and Mary Graham */
 using namespace std;
 
     Card:: Card()       //default constructor
@@ -48,13 +48,13 @@ using namespace std;
     {
         switch(s) {
             case Card::spades:
-                return "♠";
+                return "s";
             case Card::hearts:
-                return "♥";
+                return "h";
             case Card::clubs:
-                return "♣";
+                return "c";
             case Card:: diamonds:
-                return "♦";
+                return "d";
             default:
                 return "x";
         }

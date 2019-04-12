@@ -57,6 +57,7 @@ int main() {
     Card pairA;  //these are just temporary card objects used for assigning cards
     Card pairB;
 
+
     /* We first check whether each player has a book in their hand or not */
     while(players.at(0).checkHandForBook(pairA, pairB)){
         players.at(0).bookCards(players.at(0).removeCardFromHand(pairA), players.at(0).removeCardFromHand(pairB));
@@ -82,7 +83,6 @@ int main() {
     //This while loop will keep being executed until each player's book size adds up to greater than or equal
     //to 52 cards
     while((players.at(0).getBookSize() + players.at(1).getBookSize() < 52)){
-
         /* The two players show their books everytime */
         cout << players.at(0).getName() << " has Books - " << players.at(0).showBooks() << endl;
         cout << players.at(1).getName() << " has Books - " << players.at(1).showBooks() << endl;
@@ -128,7 +128,7 @@ int main() {
             while(!found){
                 Card match = Card(seeking.getRank(),(Card::Suit)specfic_suit);  //Creating a matching card that the opponent has in his hand
                 if(players.at(opponent).cardInHand(match)){
-                    log << players.at(turn).getName() << " books the pair of " << seeking.rankString(seeking.getRank()) << "'s." << endl;
+                    log << players.at(turn).getName() << " books the pair of " << seeking.rankString(seeking.getRank()) << "s." << endl;
                     Card testSeeking = players.at(turn).removeCardFromHand(seeking);  //testSeeking is the seeking card that the player who has his turn is going to remove
                     Card testMatch = players.at(opponent).removeCardFromHand(match);  //testMatch is the card with the same rank as the seeking card that the opponent will remove
                     players.at(turn).bookCards(testMatch, testSeeking); //We use testMatch and testSeeking cards to form a book and add it to the book pile of the player who has his turn
@@ -152,10 +152,11 @@ int main() {
             players.at(turn).addCard(deal); //adds it to the hand
             if(players.at(turn).checkHandForBook(pairA, pairB)) {
                 players.at(turn).bookCards(players.at(turn).removeCardFromHand(pairA), players.at(turn).removeCardFromHand(pairB));
-                log << players.at(turn).getName() << " books the pair of " << deal.rankString(deal.getRank()) << "'s." << endl;
+                log << players.at(turn).getName() << " books the pair of " << deal.rankString(deal.getRank()) << "s." << endl;
             }
 
             turn = (turn+1) % 2;  //Alternating the turns between the players
+
         }
     }
 

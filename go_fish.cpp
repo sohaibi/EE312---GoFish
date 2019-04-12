@@ -47,18 +47,15 @@ int main() {
         players.at(turn).addCard(d.dealCard()); //adding 7 cards to each player's hand
     }
 
-    cout <<  players.at(0).getName() << "'s" << " hand: " << players.at(0).showHand() << endl;
-    log <<   players.at(0).getName() << "'s" << " hand: " << players.at(0).showHand() << endl;
-    cout <<  players.at(1).getName() << "'s" << " hand: " << players.at(1).showHand() << endl;
-    log <<   players.at(1).getName() << "'s" << " hand: " << players.at(1).showHand() << endl;
+    cout <<  players.at(0).getName() << "'s hand: " << players.at(0).showHand() << endl;
+    log <<   players.at(0).getName() << "'s hand: " << players.at(0).showHand() << endl;
+    cout <<  players.at(1).getName() << "'s hand: " << players.at(1).showHand() << endl;
+    log <<   players.at(1).getName() << "'s hand: " << players.at(1).showHand() << endl;
     cout << endl;
     log << endl;
 
     Card pairA;  //these are just temporary card objects used for assigning cards
     Card pairB;
-    Card temp1;
-    Card temp2;
-    Card reserve;
 
     /* We first check whether each player has a book in their hand or not */
     while(players.at(0).checkHandForBook(pairA, pairB)){
@@ -87,14 +84,14 @@ int main() {
     while((players.at(0).getBookSize() + players.at(1).getBookSize() < 52)){
 
         /* The two players show their books everytime */
-        cout << players.at(0).getName() << " has " << "Books - " << players.at(0).showBooks() << endl;
-        cout << players.at(1).getName() << " has " << "Books - " << players.at(1).showBooks() << endl;
+        cout << players.at(0).getName() << " has Books - " << players.at(0).showBooks() << endl;
+        cout << players.at(1).getName() << " has Books - " << players.at(1).showBooks() << endl;
         cout << endl;
-        log << players.at(0).getName() << " has " << "Books - " << players.at(0).showBooks() << endl;
-        log << players.at(1).getName() << " has " << "Books - " << players.at(1).showBooks() << endl;
+        log << players.at(0).getName() << " has Books - " << players.at(0).showBooks() << endl;
+        log << players.at(1).getName() << " has Books - " << players.at(1).showBooks() << endl;
         log << endl;
 
-        log << "It is " << players.at(turn).getName() << "'s turn" << endl;
+        log << "It is " << players.at(turn).getName() << "'s turn." << endl;
         /* This is the case where it is important to check whether either of the players has no cards in their hand */
         /* If there are no cards in their hand remaining, then we must display the message that the player must draw another card
          * from their hand.
@@ -102,9 +99,9 @@ int main() {
          * The turn alternates to the next player
         */
         if(players.at(turn).getHandSize() == 0){
-            log << players.at(turn).getName() << " has no cards in their hand" << " They must draw another card" << endl;
+            log << players.at(turn).getName() << " has no cards in their hand. They must draw another card." << endl;
             Card must_draw = d.dealCard();
-            log << players.at(turn). getName() << " draws" << " " << must_draw.toString() << endl;
+            log << players.at(turn). getName() << " draws the " << must_draw.toString() << "." << endl;
             players.at(turn).addCard(must_draw);
             turn = (turn+1)%2;  //Since the player has drawn a card from their deck, it alternates the turn to the other player.
             continue;          //this will just continue the execution of the outer while loop. In other words, the game will still go on
@@ -116,11 +113,11 @@ int main() {
         found = false;   //Setting the boolean variable found to be false because we have not found the card from the opponent's hand that has
         //the same ranking as the seeking card
 
-        log << players.at(turn).getName() << " asks - Do you have any" << " " << seeking.rankString(seeking.getRank()) << "'s" << endl;
+        log << players.at(turn).getName() << " asks - Do you have any " << seeking.rankString(seeking.getRank()) << "'s?" << endl;
         //player asks the opponent for the card that has similar ranking to the seeking card
 
         if(players.at(opponent).rankInHand(seeking)){
-        log << players.at(opponent).getName() << " says - Yes. I have a" << " " << seeking.rankString(seeking.getRank()) << endl;
+        log << players.at(opponent).getName() << " says - Yes. I have a " << seeking.rankString(seeking.getRank()) << "." << endl;
         //Opponent has the card of the same ranking as the player who has his turn
 
         /* Now we need to find what card the opponent is holding in his hand that is of the same rank as the seeking card but
@@ -131,7 +128,7 @@ int main() {
             while(!found){
                 Card match = Card(seeking.getRank(),(Card::Suit)specfic_suit);  //Creating a matching card that the opponent has in his hand
                 if(players.at(opponent).cardInHand(match)){
-                    log << players.at(turn).getName() << " books the" << " " << seeking.rankString(seeking.getRank()) << endl;
+                    log << players.at(turn).getName() << " books the pair of " << seeking.rankString(seeking.getRank()) << "s." << endl;
                     Card testSeeking = players.at(turn).removeCardFromHand(seeking);  //testSeeking is the seeking card that the player who has his turn is going to remove
                     Card testMatch = players.at(opponent).removeCardFromHand(match);  //testMatch is the card with the same rank as the seeking card that the opponent will remove
                     players.at(turn).bookCards(testMatch, testSeeking); //We use testMatch and testSeeking cards to form a book and add it to the book pile of the player who has his turn
@@ -149,15 +146,16 @@ int main() {
          * Also, the player will end his turn
         */
         else{
-            log << players.at(opponent).getName() << " says - Go Fish" << endl;
+            log << players.at(opponent).getName() << " says - Go Fish." << endl;
             Card deal = d.dealCard();  //deals the card puts it in the temporary card object named deal
-            log << players.at(turn). getName() << " draws" << " " << deal.toString() << endl;
+            log << players.at(turn). getName() << " draws the " << deal.toString() << "." << endl;
             players.at(turn).addCard(deal); //adds it to the hand
             if(players.at(turn).checkHandForBook(pairA, pairB)) {
                 players.at(turn).bookCards(players.at(turn).removeCardFromHand(pairA), players.at(turn).removeCardFromHand(pairB));
-                log << players.at(turn).getName() << " books the" << " " << deal.rankString(deal.getRank()) << endl;
+                log << players.at(turn).getName() << " books the pair of " << deal.rankString(deal.getRank()) << "s." << endl;
             }
 
+            turn = (turn+1) % 2;  //Alternating the turns between the players
             turn = (turn+1) % 2;  //Alternating the turns between the players
         }
     }
@@ -169,26 +167,26 @@ int main() {
     log << "Final Results";
     cout << endl;
     log << endl;
-    cout << players.at(0).getName() << " has " << "Books: " << players.at(0).showBooks() << endl;
-    cout << players.at(1).getName() << " has " << "Books: " << players.at(1).showBooks() << endl;
-    log  << players.at(0).getName() << " has " << "Books: " << players.at(0).showBooks() << endl;
-    log  << players.at(1).getName() << " has " << "Books: " << players.at(1).showBooks() << endl;
+    cout << players.at(0).getName() << " has Books: " << players.at(0).showBooks() << endl;
+    cout << players.at(1).getName() << " has Books: " << players.at(1).showBooks() << endl;
+    log  << players.at(0).getName() << " has Books: " << players.at(0).showBooks() << endl;
+    log  << players.at(1).getName() << " has Books: " << players.at(1).showBooks() << endl;
 
     /* Determining the winning condition */
     /* Please note that these if statements are just to print the winner and their books in the gofish_results.txt file */
     /* If there is a tie between the two players, then both of their books will be displayed */
 
     if(players.at(0).getBookSize() > players.at(1).getBookSize()){
-        log << players.at(0).getName() << " has " << (players.at(0).getBookSize() / 2 ) << " books" << endl;
+        log << players.at(0).getName() << " has " << (players.at(0).getBookSize() / 2 ) << " books." << endl;
         log << players.at(0).getName() << " is the winner!!!" << endl;
     }
     else if(players.at(0).getBookSize() < players.at(1).getBookSize()){
-        log << players.at(1).getName() << " has " << (players.at(1).getBookSize() / 2 ) << " books" << endl;
+        log << players.at(1).getName() << " has " << (players.at(1).getBookSize() / 2 ) << " books." << endl;
         log <<  players.at(1).getName() << " is the winner!!!" << endl;
     }
     else if(players.at(0).getBookSize() == players.at(1).getBookSize()){
-        log << players.at(0).getName() << " has " << (players.at(0).getBookSize() / 2 ) << " books" <<  endl;
-        log << players.at(1).getName() << " has " << (players.at(1).getBookSize() / 2 ) << " books" << endl;
+        log << players.at(0).getName() << " has " << (players.at(0).getBookSize() / 2 ) << " books." <<  endl;
+        log << players.at(1).getName() << " has " << (players.at(1).getBookSize() / 2 ) << " books." << endl;
         log << "IT IS A TIE!!!" << " What a match between our contestants " << players.at(0).getName() << " and " << players.at(1).getName() << endl;
     }
 

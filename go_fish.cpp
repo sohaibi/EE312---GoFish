@@ -128,7 +128,7 @@ int main() {
             while(!found){
                 Card match = Card(seeking.getRank(),(Card::Suit)specfic_suit);  //Creating a matching card that the opponent has in his hand
                 if(players.at(opponent).cardInHand(match)){
-                    log << players.at(turn).getName() << " books the pair of " << seeking.rankString(seeking.getRank()) << "s." << endl;
+                    log << players.at(turn).getName() << " books the pair of " << seeking.rankString(seeking.getRank()) << "'s." << endl;
                     Card testSeeking = players.at(turn).removeCardFromHand(seeking);  //testSeeking is the seeking card that the player who has his turn is going to remove
                     Card testMatch = players.at(opponent).removeCardFromHand(match);  //testMatch is the card with the same rank as the seeking card that the opponent will remove
                     players.at(turn).bookCards(testMatch, testSeeking); //We use testMatch and testSeeking cards to form a book and add it to the book pile of the player who has his turn
@@ -152,10 +152,9 @@ int main() {
             players.at(turn).addCard(deal); //adds it to the hand
             if(players.at(turn).checkHandForBook(pairA, pairB)) {
                 players.at(turn).bookCards(players.at(turn).removeCardFromHand(pairA), players.at(turn).removeCardFromHand(pairB));
-                log << players.at(turn).getName() << " books the pair of " << deal.rankString(deal.getRank()) << "s." << endl;
+                log << players.at(turn).getName() << " books the pair of " << deal.rankString(deal.getRank()) << "'s." << endl;
             }
 
-            turn = (turn+1) % 2;  //Alternating the turns between the players
             turn = (turn+1) % 2;  //Alternating the turns between the players
         }
     }
